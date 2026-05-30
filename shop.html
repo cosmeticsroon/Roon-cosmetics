@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop — ROON Cosmetics</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html">ROON</a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html" class="active">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="toggleCart()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- CART -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Bag</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty">Your bag is empty</p></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">Total: KSh <span id="cartTotal">0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Pay via M-Pesa</button>
+  </div>
+</div>
+
+<!-- SHOP HERO -->
+<section class="shop-hero">
+  <p class="eyebrow" style="color:var(--gold);margin-bottom:16px;">All Products</p>
+  <h1>The Full Collection</h1>
+  <p>Over 60 premium beauty products, delivered across Kenya</p>
+</section>
+
+<!-- SEARCH & FILTERS -->
+<div class="container">
+  <div style="padding:32px 0 0;max-width:500px;margin:0 auto;">
+    <div style="position:relative;">
+      <input type="text" id="searchInput" placeholder="Search products…"
+        oninput="filterProducts()"
+        style="width:100%;padding:16px 50px 16px 20px;border:1px solid var(--blush);border-radius:50px;font-family:var(--font-sans);font-size:0.9rem;color:var(--text);background:white;outline:none;">
+      <span style="position:absolute;right:20px;top:50%;transform:translateY(-50%);opacity:0.4;">🔍</span>
+    </div>
+  </div>
+  <div class="shop-filters" id="filters">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="setFilter('skincare',this)">Skincare</button>
+    <button class="filter-btn" onclick="setFilter('lips',this)">Lip Colour</button>
+    <button class="filter-btn" onclick="setFilter('face',this)">Face</button>
+    <button class="filter-btn" onclick="setFilter('eyes',this)">Eye Makeup</button>
+    <button class="filter-btn" onclick="setFilter('fragrance',this)">Fragrance</button>
+    <button class="filter-btn" onclick="setFilter('hair',this)">Hair Care</button>
+    <button class="filter-btn" onclick="setFilter('body',this)">Body</button>
+  </div>
+</div>
+
+<!-- SORT BAR -->
+<div class="container" style="display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid var(--warm);">
+  <p id="productCount" style="font-size:0.85rem;color:var(--muted);">Showing all products</p>
+  <select id="sortSelect" onchange="filterProducts()"
+    style="padding:8px 16px;border:1px solid var(--blush);border-radius:50px;font-family:var(--font-sans);font-size:0.8rem;background:white;color:var(--text);outline:none;">
+    <option value="default">Sort: Default</option>
+    <option value="price-asc">Price: Low to High</option>
+    <option value="price-desc">Price: High to Low</option>
+    <option value="name">Name: A–Z</option>
+  </select>
+</div>
+
+<!-- PRODUCTS -->
+<section class="shop-section">
+  <div class="container">
+    <div class="products-grid" id="shopGrid"></div>
+    <p id="noResults" style="display:none;text-align:center;color:var(--muted);padding:60px 0;font-family:var(--font-serif);font-size:1.5rem;">No products found.</p>
+  </div>
+</section>
+
+<!-- MPESA INFO STRIP -->
+<div style="background:var(--dark);padding:40px;text-align:center;">
+  <p style="color:var(--gold);font-family:var(--font-serif);font-size:1.3rem;margin-bottom:8px;">Pay via M-Pesa · Fast & Secure</p>
+  <p style="color:rgba(253,246,240,0.5);font-size:0.9rem;">Add to bag → Click "Pay via M-Pesa" → We'll send payment instructions to your WhatsApp</p>
+  <p style="color:var(--gold);font-size:1.1rem;margin-top:12px;">📞 +254 708 067 741</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">ROON</div>
+      <p>Premium beauty for every woman.<br>Nairobi, Kenya.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/roon_cosmetics" target="_blank">IG</a>
+        <a href="https://www.tiktok.com/@roon_cosmetics" target="_blank">TT</a>
+        <a href="https://www.facebook.com/roon_cosmetics" target="_blank">FB</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="shop.html?cat=skincare">Skincare</a>
+      <a href="shop.html?cat=lips">Lip Colour</a>
+      <a href="shop.html?cat=face">Face</a>
+      <a href="shop.html?cat=eyes">Eye Makeup</a>
+      <a href="shop.html?cat=fragrance">Fragrance</a>
+      <a href="shop.html?cat=hair">Hair Care</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Returns</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📞 +254 708 067 741</p>
+      <p>✉️ cosmeticsroon@gmail.com</p>
+      <p>📍 Nairobi, Kenya</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 ROON Cosmetics. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="main.js"></script>
+<script>
+let activeFilter = 'all';
+
+// Check URL param for category
+const urlCat = new URLSearchParams(window.location.search).get('cat');
+if (urlCat) {
+  activeFilter = urlCat;
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.textContent.toLowerCase().replace(/\s/g,'') === urlCat.toLowerCase().replace(/\s/g,'') ||
+        (urlCat === 'lips' && btn.textContent === 'Lip Colour') ||
+        (urlCat === 'eyes' && btn.textContent === 'Eye Makeup') ||
+        (urlCat === 'hair' && btn.textContent === 'Hair Care')) {
+      btn.classList.add('active');
+    }
+  });
+}
+
+function setFilter(cat, el) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  filterProducts();
+}
+
+function filterProducts() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const sort = document.getElementById('sortSelect').value;
+  let filtered = products.filter(p => {
+    const matchCat = activeFilter === 'all' || p.category === activeFilter;
+    const matchSearch = p.name.toLowerCase().includes(search) || p.desc.toLowerCase().includes(search) || p.category.toLowerCase().includes(search);
+    return matchCat && matchSearch;
+  });
+  if (sort === 'price-asc') filtered.sort((a,b) => a.price - b.price);
+  if (sort === 'price-desc') filtered.sort((a,b) => b.price - a.price);
+  if (sort === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name));
+
+  const grid = document.getElementById('shopGrid');
+  const none = document.getElementById('noResults');
+  const count = document.getElementById('productCount');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    none.style.display = 'block';
+    count.textContent = 'No products found';
+    return;
+  }
+  none.style.display = 'none';
+  count.textContent = `Showing ${filtered.length} product${filtered.length !== 1 ? 's' : ''}`;
+  grid.innerHTML = filtered.map(p => productCard(p)).join('');
+
+  // Re-observe for animations
+  grid.querySelectorAll('.product-card').forEach(el => {
+    el.classList.add('reveal');
+    observer.observe(el);
+  });
+}
+
+// Scroll reveal observer (reuse from main.js)
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.05 });
+
+filterProducts();
+</script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROON Cosmetics — Beauty Redefined</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<!-- LOADER -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-logo">ROON</div>
+    <div class="loader-bar"><div class="loader-fill" id="loaderFill"></div></div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html">ROON</a></div>
+  <div class="nav-links">
+    <a href="index.html" class="active">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="toggleCart()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>Your Bag</h3>
+    <button onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <p class="cart-empty">Your bag is empty</p>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">Total: KSh <span id="cartTotal">0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Pay via M-Pesa</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Est. 2024 · Nairobi</p>
+    <h1 class="hero-title">
+      <span>Beauty</span>
+      <em>Redefined</em>
+    </h1>
+    <p class="hero-sub">Premium cosmetics crafted for every shade, every story, every you.</p>
+    <div class="hero-actions">
+      <a href="shop.html" class="btn-primary">Shop Now</a>
+      <a href="about.html" class="btn-ghost">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Skincare</span><span>·</span>
+    <span>Lip Colour</span><span>·</span>
+    <span>Foundation</span><span>·</span>
+    <span>Fragrance</span><span>·</span>
+    <span>Serums</span><span>·</span>
+    <span>Eye Makeup</span><span>·</span>
+    <span>Hair Care</span><span>·</span>
+    <span>Body Glow</span><span>·</span>
+    <span>Skincare</span><span>·</span>
+    <span>Lip Colour</span><span>·</span>
+    <span>Foundation</span><span>·</span>
+    <span>Fragrance</span><span>·</span>
+    <span>Serums</span><span>·</span>
+    <span>Eye Makeup</span><span>·</span>
+    <span>Hair Care</span><span>·</span>
+    <span>Body Glow</span><span>·</span>
+  </div>
+</div>
+
+<!-- FEATURED CATEGORIES -->
+<section class="categories">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Explore</p>
+      <h2>Shop by Category</h2>
+    </div>
+    <div class="categories-grid">
+      <a href="shop.html?cat=skincare" class="cat-card" data-tilt>
+        <div class="cat-bg" style="background: linear-gradient(135deg,#f9e4d4,#f0c4b0)"></div>
+        <div class="cat-icon">🌿</div>
+        <h3>Skincare</h3>
+        <p>Serums, moisturisers, cleansers</p>
+      </a>
+      <a href="shop.html?cat=lips" class="cat-card" data-tilt>
+        <div class="cat-bg" style="background: linear-gradient(135deg,#fce4ec,#f8bbd0)"></div>
+        <div class="cat-icon">💄</div>
+        <h3>Lip Colour</h3>
+        <p>Lipsticks, glosses, liners</p>
+      </a>
+      <a href="shop.html?cat=face" class="cat-card" data-tilt>
+        <div class="cat-bg" style="background: linear-gradient(135deg,#fff8e1,#ffe082)"></div>
+        <div class="cat-icon">✨</div>
+        <h3>Face</h3>
+        <p>Foundation, blush, contour</p>
+      </a>
+      <a href="shop.html?cat=eyes" class="cat-card" data-tilt>
+        <div class="cat-bg" style="background: linear-gradient(135deg,#e8eaf6,#c5cae9)"></div>
+        <div class="cat-icon">👁️</div>
+        <h3>Eye Makeup</h3>
+        <p>Mascara, liner, eyeshadow</p>
+      </a>
+      <a href="shop.html?cat=fragrance" class="cat-card" data-tilt>
+        <div class="cat-bg" style="background: linear-gradient(135deg,#f3e5f5,#ce93d8)"></div>
+        <div class="cat-icon">🌸</div>
+        <h3>Fragrance</h3>
+        <p>Perfumes, body mists, oils</p>
+      </a>
+      <a href="shop.html?cat=hair" class="cat-card" data-tilt>
+        <div class="cat-bg" style="background: linear-gradient(135deg,#e0f2f1,#80cbc4)"></div>
+        <div class="cat-icon">💇</div>
+        <h3>Hair Care</h3>
+        <p>Treatments, oils, styling</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Best Sellers</p>
+      <h2>Loved by All</h2>
+    </div>
+    <div class="products-grid" id="featuredGrid"></div>
+    <div class="text-center mt-40">
+      <a href="shop.html" class="btn-primary">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- 3D PARALLAX BANNER -->
+<section class="parallax-banner">
+  <canvas id="bannerCanvas"></canvas>
+  <div class="banner-content">
+    <h2>Glow From Within</h2>
+    <p>Natural ingredients. Luxurious results. Delivered to your door across Kenya.</p>
+    <a href="shop.html" class="btn-light">Discover More</a>
+  </div>
+</section>
+
+<!-- WHY ROON -->
+<section class="why-roon">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Why Us</p>
+      <h2>The ROON Promise</h2>
+    </div>
+    <div class="promise-grid">
+      <div class="promise-card">
+        <div class="promise-icon">🌿</div>
+        <h3>Natural & Safe</h3>
+        <p>Dermatologist-approved formulas safe for all skin types and tones.</p>
+      </div>
+      <div class="promise-card">
+        <div class="promise-icon">📦</div>
+        <h3>Fast Delivery</h3>
+        <p>Nationwide delivery across Kenya within 1–3 business days.</p>
+      </div>
+      <div class="promise-card">
+        <div class="promise-icon">💳</div>
+        <h3>M-Pesa Payments</h3>
+        <p>Pay instantly and securely via M-Pesa. Easy, fast, trusted.</p>
+      </div>
+      <div class="promise-card">
+        <div class="promise-icon">🔄</div>
+        <h3>Easy Returns</h3>
+        <p>Not satisfied? Contact us within 7 days for a hassle-free return.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM / SOCIAL -->
+<section class="social-section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Follow Along</p>
+      <h2>@roon_cosmetics</h2>
+    </div>
+    <div class="social-grid">
+      <div class="social-card s1"><div class="social-overlay"><span>💄</span></div></div>
+      <div class="social-card s2"><div class="social-overlay"><span>✨</span></div></div>
+      <div class="social-card s3"><div class="social-overlay"><span>🌹</span></div></div>
+      <div class="social-card s4"><div class="social-overlay"><span>💅</span></div></div>
+      <div class="social-card s5"><div class="social-overlay"><span>🌿</span></div></div>
+      <div class="social-card s6"><div class="social-overlay"><span>💋</span></div></div>
+    </div>
+    <div class="social-links">
+      <a href="https://www.instagram.com/roon_cosmetics" target="_blank" class="social-pill">Instagram</a>
+      <a href="https://www.tiktok.com/@roon_cosmetics" target="_blank" class="social-pill">TikTok</a>
+      <a href="https://www.facebook.com/roon_cosmetics" target="_blank" class="social-pill">Facebook</a>
+      <a href="https://twitter.com/roon_cosmetics" target="_blank" class="social-pill">X / Twitter</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+  <div class="newsletter-inner">
+    <h2>Get 10% Off Your First Order</h2>
+    <p>Subscribe for beauty tips, new arrivals, and exclusive offers.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Your email address" id="nlEmail">
+      <button onclick="subscribeNewsletter()">Subscribe</button>
+    </div>
+    <p class="nl-note" id="nlNote"></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">ROON</div>
+      <p>Premium beauty for every woman.<br>Nairobi, Kenya.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/roon_cosmetics" target="_blank">IG</a>
+        <a href="https://www.tiktok.com/@roon_cosmetics" target="_blank">TT</a>
+        <a href="https://www.facebook.com/roon_cosmetics" target="_blank">FB</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="shop.html?cat=skincare">Skincare</a>
+      <a href="shop.html?cat=lips">Lip Colour</a>
+      <a href="shop.html?cat=face">Face</a>
+      <a href="shop.html?cat=eyes">Eye Makeup</a>
+      <a href="shop.html?cat=fragrance">Fragrance</a>
+      <a href="shop.html?cat=hair">Hair Care</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Returns</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📞 +254 708 067 741</p>
+      <p>✉️ cosmeticsroon@gmail.com</p>
+      <p>📍 Nairobi, Kenya</p>
+      <p style="margin-top:10px;font-size:0.85rem;opacity:0.7">M-Pesa Till/Paybill:<br><strong>+254 708 067 741</strong></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 ROON Cosmetics. All rights reserved. | Crafted with ❤️ in Nairobi</p>
+  </div>
+</footer>
+
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="main.js"></script>
+<script>
+// Render featured products (first 8)
+const grid = document.getElementById('featuredGrid');
+const featured = products.slice(0, 8);
+featured.forEach(p => {
+  grid.innerHTML += productCard(p);
+});
+</script>
+</body>
+</html>

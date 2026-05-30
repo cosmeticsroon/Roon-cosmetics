@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — ROON Cosmetics</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursorFollower"></div>
+
+<nav id="nav">
+  <div class="nav-logo"><a href="index.html">ROON</a></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html" class="active">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="toggleCart()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header"><h3>Your Bag</h3><button onclick="toggleCart()">✕</button></div>
+  <div class="cart-items" id="cartItems"><p class="cart-empty">Your bag is empty</p></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total">Total: KSh <span id="cartTotal">0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Pay via M-Pesa</button>
+  </div>
+</div>
+
+<!-- ABOUT HERO -->
+<section class="about-hero">
+  <p class="eyebrow" style="color:var(--gold);margin-bottom:16px;">Our Story</p>
+  <h1>Born in Nairobi.<br>Made for the World.</h1>
+  <p style="margin-top:16px;font-style:italic;color:var(--gold);">"Beauty is not one look — it's every look."</p>
+</section>
+
+<!-- STORY SECTION -->
+<section class="about-story">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">🌹</div>
+      <div class="about-text">
+        <p class="eyebrow">Who We Are</p>
+        <h2>The ROON Story</h2>
+        <p>ROON Cosmetics was born from a simple but powerful idea: every woman deserves access to premium beauty products that actually work for her skin, her tone, and her life.</p>
+        <p>Founded in Nairobi in 2024, we set out to curate and deliver the finest skincare, makeup, fragrance and haircare products — at prices that don't require choosing between beauty and bills.</p>
+        <p>We believe beauty should feel effortless, inclusive and joyful. From the deepest ebony to the fairest porcelain, ROON has something for every woman, every shade, every story.</p>
+        <a href="shop.html" class="btn-primary" style="margin-top:16px;">Shop the Collection</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values-section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">What We Stand For</p>
+      <h2>Our Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div style="font-size:2.5rem;">🌿</div>
+        <h3>Clean Beauty</h3>
+        <p>We carefully select products free from harmful chemicals. Safe for your skin, your family, and the planet.</p>
+      </div>
+      <div class="value-card">
+        <div style="font-size:2.5rem;">🌍</div>
+        <h3>Inclusive Beauty</h3>
+        <p>Our range celebrates every skin tone. We stock shades and formulas for the full spectrum of African beauty.</p>
+      </div>
+      <div class="value-card">
+        <div style="font-size:2.5rem;">💛</div>
+        <h3>Community First</h3>
+        <p>ROON is more than a shop — it's a community. We support local, celebrate women, and give back where we can.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="padding:80px 0;background:var(--dark);">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px;text-align:center;">
+      <div>
+        <p style="font-family:var(--font-serif);font-size:3.5rem;color:var(--gold);font-weight:300;">60+</p>
+        <p style="color:rgba(253,246,240,0.5);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;">Products</p>
+      </div>
+      <div>
+        <p style="font-family:var(--font-serif);font-size:3.5rem;color:var(--gold);font-weight:300;">8</p>
+        <p style="color:rgba(253,246,240,0.5);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;">Categories</p>
+      </div>
+      <div>
+        <p style="font-family:var(--font-serif);font-size:3.5rem;color:var(--gold);font-weight:300;">47</p>
+        <p style="color:rgba(253,246,240,0.5);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;">Counties Delivered</p>
+      </div>
+      <div>
+        <p style="font-family:var(--font-serif);font-size:3.5rem;color:var(--gold);font-weight:300;">★ 4.9</p>
+        <p style="color:rgba(253,246,240,0.5);font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;">Customer Rating</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section style="padding:100px 0;">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Reviews</p>
+      <h2>What Our Customers Say</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;">
+      <div style="background:white;padding:36px;border-radius:var(--radius);box-shadow:var(--shadow);">
+        <p style="font-size:1.4rem;color:var(--gold);margin-bottom:12px;">★★★★★</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:16px;color:var(--dark);font-style:italic;">"The Vitamin C serum literally transformed my skin in 2 weeks. Dark spots gone!"</p>
+        <p style="font-size:0.8rem;color:var(--muted);">— Amina W., Nairobi</p>
+      </div>
+      <div style="background:white;padding:36px;border-radius:var(--radius);box-shadow:var(--shadow);">
+        <p style="font-size:1.4rem;color:var(--gold);margin-bottom:12px;">★★★★★</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:16px;color:var(--dark);font-style:italic;">"Delivery was so fast! The Rose Oud perfume is absolutely divine. Will order again."</p>
+        <p style="font-size:0.8rem;color:var(--muted);">— Fatuma K., Mombasa</p>
+      </div>
+      <div style="background:white;padding:36px;border-radius:var(--radius);box-shadow:var(--shadow);">
+        <p style="font-size:1.4rem;color:var(--gold);margin-bottom:12px;">★★★★★</p>
+        <p style="font-family:var(--font-serif);font-size:1.1rem;margin-bottom:16px;color:var(--dark);font-style:italic;">"Finally a Kenyan beauty brand that actually caters for deep skin tones. Love ROON!"</p>
+        <p style="font-size:0.8rem;color:var(--muted);">— Grace M., Kisumu</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding:100px 0;background:linear-gradient(135deg,var(--rose),var(--deep));text-align:center;">
+  <p class="eyebrow" style="color:rgba(255,255,255,0.7);margin-bottom:16px;">Ready to Glow?</p>
+  <h2 style="font-family:var(--font-serif);font-size:clamp(2rem,5vw,4rem);color:white;margin-bottom:32px;font-weight:300;">Explore the Full Collection</h2>
+  <a href="shop.html" class="btn-light">Shop Now</a>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">ROON</div>
+      <p>Premium beauty for every woman.<br>Nairobi, Kenya.</p>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/roon_cosmetics" target="_blank">IG</a>
+        <a href="https://www.tiktok.com/@roon_cosmetics" target="_blank">TT</a>
+        <a href="https://www.facebook.com/roon_cosmetics" target="_blank">FB</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <a href="shop.html?cat=skincare">Skincare</a>
+      <a href="shop.html?cat=lips">Lip Colour</a>
+      <a href="shop.html?cat=face">Face</a>
+      <a href="shop.html?cat=eyes">Eye Makeup</a>
+      <a href="shop.html?cat=fragrance">Fragrance</a>
+      <a href="shop.html?cat=hair">Hair Care</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>📞 +254 708 067 741</p>
+      <p>✉️ cosmeticsroon@gmail.com</p>
+      <p>📍 Nairobi, Kenya</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 ROON Cosmetics. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="products.js"></script>
+<script src="cart.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
